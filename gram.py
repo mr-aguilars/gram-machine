@@ -4,7 +4,7 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 
-chromedriver_path = '/Users/Macbook/Downloads/chromedriver' # Chromedriver path on computer
+chromedriver_path = '/Users/Macbook/Downloads/chromedriver' # Chrome driver path on the computer
 webdriver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(2)
 webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
@@ -16,23 +16,23 @@ password = webdriver.find_element_by_name('password')
 password.send_keys('#####') # Your Password goes here
 
 button_login = webdriver.find_element_by_css_selector('#loginForm > div > div:nth-child(3)')
-button_login.click() #Clicks the login
+button_login.click() # Automatically clicks the login
 sleep(4)
 
 notnow = webdriver.find_element_by_css_selector('#react-root > section > main > div > div > div > div > button')
-notnow.click() #Pop-up click notification
+notnow.click() # Pop-up click notification
 
 turnon = webdriver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div > div.mt3GC > button.aOOlW.HoLwm')
-turnon.click() #Pop-up click notification, my insta givens me a ton of pop-ups, use as many are needed
+turnon.click() # Pop-up click notification, my instagram givens me a ton of pop-ups, use as many are needed
 sleep(3)
 
-hashtag_list = ['apple', 'star wars']
+hashtag_list = ['apple', 'star wars'] #What you would like the machine to search
 
 prev_user_list = []
 #prev_user_list = pd.read_csv('20181203-224633_users_followed_list.csv', delimiter=',').iloc[:,1:2] # useful to build a user log
-#prev_user_list = list(prev_user_list['0'])
+#prev_user_list = list(prev_user_list['0'])Only important if you have an existing cvs file.
 
-new_followed = []
+new_followed = [] # Provides a report of the following variables
 tag = -1
 followed = 0
 likes = 0
@@ -96,7 +96,7 @@ for hashtag in hashtag_list:
             else:
                 webdriver.find_element_by_link_text('Next').click()
                 sleep(randint(20,26))
-    # some hashtag stops refreshing photos (it may happen sometimes), it continues to the next
+    # Some hashtag stops refreshing photos (it may happen sometimes), it continues to the next
     except:
         continue
 
@@ -109,5 +109,4 @@ print('Liked {} photos.'.format(likes))
 print('Commented {} photos.'.format(comments))
 print('Followed {} new people.'.format(followed))
 
-#Trying to expand on the code to actually have the machine for a longer time. Overall it the machine
-#works but not at the capacity I would like, perhaps maybe using an Instagram API. 
+# Trying to have the machine be able to go through more content.
